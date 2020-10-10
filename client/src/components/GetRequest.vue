@@ -17,8 +17,9 @@ export default {
     };
   },
   created() {
+    const domain = window.location.hostname; 
     axios
-      .get('http://localhost:3000')
+      .get(`http://${domain}:3000`)
       .then((response) => (this.response = response.data))
       .catch((error) => {
         this.error = error.message;
