@@ -1,25 +1,19 @@
 const express = require('express')
 const cors = require('cors')
 const app = express()
+const shell = require('shelljs');
 const port = 3000
-const {
-    exec
-} = require('child_process');
 
 app.use(cors())
 
 app.get('/', (req, res) => {
-    exec('dir', (error, stdout, stderr) => {
-        if (error) {
-            console.log(`error: ${error.message}`);
-            return;
-        }
-        if (stderr) {
-            console.log(`stderr: ${stderr}`);
-            return;
-        }
-        res.send(stdout)
-    });
+    res.send(shell.ls());
+
+    // Run external tool synchronously
+    if (shell.exec('git commit -am "Auto-commit"').code !== 0) {
+        shell.echo('Error: Git commit failed');
+        shell.exit(1);
+    }
 })
 
 app.listen(port, () => {
