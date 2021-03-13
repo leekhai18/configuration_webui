@@ -1,20 +1,40 @@
 const express = require('express')
 const cors = require('cors')
+const bp = require('body-parser')
 const app = express()
 const shell = require('shelljs')
 const port = 3000
 
 app.use(cors())
+app.use(bp.json())
+app.use(bp.urlencoded({ extended: true }))
+app.use((req, res, next) => {
+    res.contentType('application/json');
+    next();
+});
 
-app.get('/', (req, res) => {
-    shell.chmod('+x', 'test.sh')
-    shell.exec('bath test.sh', function (code, stdout, stderr) {
-        console.log('Exit code:', code)
-        console.log('Program output:', stdout)
-        console.log('Program stderr:', stderr)
+app.get('/getConfigure', (req, res) => {
+    shell.exec('bash test.sh getConfigure', function (code, stdout, stderr) {
+        if (code !== 0) {
+            return res.status(500).send({
+                bashCode: code,
+                baseError: stderr
+            })
+        }
+        return res.status(200).send(stdout)
     });
+})
 
-    // res.send(shell.exec('test.sh'));
+app.post('/setConfigure', (req, res) => {
+    shell.exec('bash test.sh setConfigure ' + `'${JSON.stringify(req.body)}'`, function (code, stdout, stderr) {
+        if (code !== 0) {
+            return res.status(500).send({
+                bashCode: code,
+                baseError: stderr
+            })
+        }
+        return res.status(200).send(stdout)
+    });
 })
 
 app.listen(port, () => {

@@ -4,13 +4,15 @@
   "private": true,
   "scripts": {
     "start": "serve -l 8080 dist",
-    "serve": "vue-cli-service serve",
+    "serve": "NODE_ENV=development vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "axios": "^0.20.0",
     "core-js": "^3.6.5",
+    "primeicons": "^4.1.0",
+    "primevue": "^3.3.5",
     "vue": "^3.0.0"
   },
   "devDependencies": {
