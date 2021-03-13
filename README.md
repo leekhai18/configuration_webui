@@ -1,7 +1,7 @@
 # Configuration WebUI
 
 ## Project overall
-client: vue
+client: vue <br/>
 server: node express on raspberry pi
 
 ## Project purpose
@@ -17,3 +17,6 @@ git clone https://github.com/leekhai18/configuration_webui.git <br/>
 npm install <br/>
 npm run bootstrap <br/>
 npm start <br/>
+
+## Integrate
+Update bashexec.sh at root/packages/server
