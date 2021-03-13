@@ -9,14 +9,16 @@ build a configuration webUI to configure MBOX (io device) by raspberry shell com
 
 
 ## Install
-sudo apt update <br/>
-sudo apt install nodejs <br/>
-sudo apt install npm <br/>
+```jsx
+sudo apt update
+sudo apt install nodejs
+sudo apt install npm
 
-git clone https://github.com/leekhai18/configuration_webui.git <br/>
-npm install <br/>
-npm run bootstrap <br/>
-npm start <br/>
+git clone https://github.com/leekhai18/configuration_webui.git
+npm install
+npm run bootstrap
+npm start
+```
 
 ## Integrate
-Update bashexec.sh at root/packages/server
+Update [bashexec.sh](https://github.com/leekhai18/configuration_webui/blob/master/packages/server/bashexec.sh) at root/packages/server
