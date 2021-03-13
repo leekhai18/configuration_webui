@@ -14,7 +14,7 @@ app.use((req, res, next) => {
 });
 
 app.get('/getConfigure', (req, res) => {
-    shell.exec('bash test.sh getConfigure', function (code, stdout, stderr) {
+    shell.exec('bash bashexec.sh getConfigure', function (code, stdout, stderr) {
         if (code !== 0) {
             return res.status(500).send({
                 bashCode: code,
@@ -26,7 +26,7 @@ app.get('/getConfigure', (req, res) => {
 })
 
 app.post('/setConfigure', (req, res) => {
-    shell.exec('bash test.sh setConfigure ' + `'${JSON.stringify(req.body)}'`, function (code, stdout, stderr) {
+    shell.exec('bash bashexec.sh setConfigure ' + `'${JSON.stringify(req.body)}'`, function (code, stdout, stderr) {
         if (code !== 0) {
             return res.status(500).send({
                 bashCode: code,
