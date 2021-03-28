@@ -15,6 +15,7 @@ sudo apt install nodejs
 sudo apt install npm
 
 git clone https://github.com/leekhai18/configuration_webui.git
+cd configuration_webui
 npm install
 npm run bootstrap
 npm start
