@@ -14,12 +14,11 @@ sudo apt update
 sudo apt install nodejs
 sudo apt install npm
 
-git clone https://github.com/leekhai18/configuration_webui.git
-cd configuration_webui
-npm install
-npm run bootstrap
-npm start
+git clone https://xforce-rio@dev.azure.com/xforce-rio/RioMboxV2/_git/Hub-FW-WebUI
+npm install --prefix ./Hub-FW-WebUI
+npm run bootstrap --prefix ./Hub-FW-WebUI
+npm start --prefix ./Hub-FW-WebUI
 ```
 
 ## Integrate
-Update [bashexec.sh](https://github.com/leekhai18/configuration_webui/blob/master/packages/server/bashexec.sh) at root/packages/server
+Update [bashexec.sh](https://xforce-rio@dev.azure.com/xforce-rio/RioMboxV2/_git/Hub-FW-WebUI/blob/main/packages/server/bashexec.sh) at root/packages/server

@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "install:prod": "npm install --only=prod",
     "start": "serve -l 8080 dist",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

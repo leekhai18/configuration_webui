@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "start": "lerna run start --parallel",
-    "bootstrap": "lerna exec npm install --only=prod"
+    "bootstrap": "lerna exec npm run install:prod"
   },
   "devDependencies": {
     "lerna": "^3.22.1"

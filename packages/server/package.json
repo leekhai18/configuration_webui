@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "install:prod": "npm install --only=prod",
     "start": "PORT=3000 node index",
     "start:dev": "nodemon index.js -e ejs,js"
   },
