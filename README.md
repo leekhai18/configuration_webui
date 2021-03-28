@@ -19,6 +19,3 @@ npm install --prefix ./Hub-FW-WebUI
 npm run bootstrap --prefix ./Hub-FW-WebUI
 npm start --prefix ./Hub-FW-WebUI
 ```
-
-## Integrate
-Update [bashexec.sh](https://xforce-rio@dev.azure.com/xforce-rio/RioMboxV2/_git/Hub-FW-WebUI/blob/main/packages/server/bashexec.sh) at root/packages/server
