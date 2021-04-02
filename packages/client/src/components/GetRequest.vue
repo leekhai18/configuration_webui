@@ -80,7 +80,7 @@
 
     <div class="card">
       <div class="card-header">
-        <h5>TV</h5>
+        <h5>TV config</h5>
         <Button
           icon="pi pi-cog"
           class="p-button-rounded p-button-text"
