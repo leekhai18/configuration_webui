@@ -19,12 +19,12 @@
         @click="loadConfig"
       />
 
-      <Button
+      <!-- <Button
         class="set-btn"
         v-if="getResponse !== null && postResponse === null"
         label="Config"
         @click="setConfig"
-      />
+      /> -->
 
       <Button
         class="set-btn"
@@ -54,6 +54,7 @@
         v-if="configuringExecutionFilePath"
         label="Save"
         @click="saveExecutionFilePath"
+        class="save-btn"
       />
     </div>
 
@@ -75,7 +76,12 @@
         v-bind:class="{ 'p-invalid': !ipAddressIsValid }"
         @blur="ipInputBlur"
       />
-      <Button v-if="configuringIpAddress" label="Save" @click="saveIpAddress" />
+      <Button
+        v-if="configuringIpAddress"
+        label="Save"
+        @click="saveIpAddress"
+        class="save-btn"
+      />
     </div>
 
     <div class="card">
@@ -131,11 +137,19 @@
         :optionLabel="optionLabelGetter"
         optionGroupLabel="groupName"
         :optionGroupChildren="['data']"
-        style="minwidth: 14rem"
+        style="minwidth: 14rem; margin-bottom: 16px"
         placeholder="Select tv mode"
         @change="tvModeSelectChange"
         @group-change="tvModeGroupChange"
       />
+      <div>
+        <Button
+          v-if="configuringTvMode"
+          label="Reset to default"
+          class="p-button-outlined p-button-secondary"
+          @click="resetToDefaultTvMode"
+        />
+      </div>
 
       <div v-if="!configuringTvMode">
         <div>
@@ -188,7 +202,7 @@
 
 .card {
   width: 400px;
-  margin: 0 auto;
+  margin: 24px auto;
 }
 
 .card-header {
@@ -200,7 +214,12 @@
 .tv-label {
   opacity: 0.7;
 }
+
 .tv-value {
+}
+
+.save-btn {
+  margin-left: 8px !important;
 }
 </style>
 
@@ -367,15 +386,12 @@ export default {
           });
       }
     },
-    setTvConfig() {
+    setTvConfig(group, code) {
       if (this.getResponse) {
         // this.isFetching = true;
         axios
           .post(`http://${domain}:3000/setConfigure`, {
-            tvConfig: {
-              group: this.tvModeGroup.groupId,
-              code: this.tvMode.code,
-            },
+            tvConfig: { group, code },
           })
           .then(() => {
             setTimeout(() => {
@@ -470,21 +486,21 @@ export default {
     onClickConfigExecutionFilePath() {
       this.configuringExecutionFilePath = !this.configuringExecutionFilePath;
       setTimeout(() => {
-        this.$refs.executionFilePathInput.$el.focus();
+        this.$refs.executionFilePathInput?.$el.focus();
       });
     },
 
     onClickConfigIpAddress() {
       this.configuringIpAddress = !this.configuringIpAddress;
       setTimeout(() => {
-        this.$refs.ipAddressInput.$el.focus();
+        this.$refs.ipAddressInput?.$el.focus();
       });
     },
 
     onClickConfigTvMode() {
       this.configuringTvMode = !this.configuringTvMode;
       setTimeout(() => {
-        this.$refs.tvModeSelect.$el.focus();
+        this.$refs.tvModeSelect?.$el.focus();
       });
       // this.openModal();
     },
@@ -505,8 +521,13 @@ export default {
     },
     tvModeSelectChange(e) {
       console.log(e.value.code);
-      this.setTvConfig();
+      this.setTvConfig(this.tvModeGroup.groupId, this.tvMode.code);
       this.configuringTvMode = false;
+    },
+    resetToDefaultTvMode() {
+      this.tvMode = null;
+      this.tvModeGroup = null;
+      this.setTvConfig(0, 0);
     },
     optionLabelGetter: function (mode) {
       return `${mode.width}x${mode.height}, ${mode.rate}hz, ${mode.aspect_ratio}`;
