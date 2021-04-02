@@ -9,7 +9,7 @@
         fill="#EEEEEE"
         animationDuration=".5s"
       />
-      <span class="config">{{ getResponse }}{{ getError }}</span>
+      <span class="config">{{ getError }}</span>
     </div>
     <div class="set" v-if="!isFetching">
       <Button
@@ -374,7 +374,7 @@ export default {
           .post(`http://${domain}:3000/setConfigure`, {
             tvConfig: {
               group: this.tvModeGroup.groupId,
-              code: this.configuringTvMode.code,
+              code: this.tvMode.code,
             },
           })
           .then(() => {
