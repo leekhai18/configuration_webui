@@ -14,8 +14,8 @@ sudo apt update
 sudo apt install nodejs
 sudo apt install npm
 
-git clone https://xforce-rio@dev.azure.com/xforce-rio/RioMboxV2/_git/Hub-FW-WebUI
-npm install --prefix ./Hub-FW-WebUI
-npm run bootstrap --prefix ./Hub-FW-WebUI
-npm start --prefix ./Hub-FW-WebUI
+git clone
+npm install --prefix ./
+npm run bootstrap --prefix ./
+npm start --prefix ./
 ```
